@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito de Compras</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <h1 id="test">Carrito de Compras</h1>
+    <div class="container"></div>
+    <div class="cart-summary">
+      <span>Total: $0</span>
+      <button class="checkout-btn" onclick="showModal()">
+        Finalizar Compra
+      </button>
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <h2>Resumen de Compra</h2>
+        <div id="productDetails" class="product-list"></div>
+        <p><strong>Total: </strong><span id="modalTotal">$0</span></p>
+        <button onclick="confirmPurchase()">Sí, comprar</button>
+        <button onclick="closeModal()">Cancelar</button>
+      </div>
+    </div>
+    <script src="js/main.js"></script>
+  </body>
+</html>

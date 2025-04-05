@@ -1,0 +1,126 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+.container {
+  width: 80%;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+h1 {
+  text-align: center;
+  width: 100%;
+  margin: 20px 0;
+  font-size: 2em;
+  color: #333;
+}
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.product:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.product img {
+  width: 150px;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+.product-info {
+  text-align: center;
+}
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.quantity-controls button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-size: 1em;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+.quantity-controls button:hover {
+  background-color: #0056b3;
+}
+.quantity-controls span {
+  font-size: 1.2em;
+  font-weight: bold;
+  min-width: 30px;
+  text-align: center;
+}
+.cart-summary {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.checkout-btn {
+  padding: 12px 25px;
+  font-size: 1.1em;
+  color: white;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.checkout-btn:hover {
+  background-color: #218838;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+.modal button {
+  margin-top: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
