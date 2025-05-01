@@ -2,90 +2,123 @@ window.onload = function () {
   totalize();
 };
 
-let data = [
+/* let data = [
   {
     id: 1,
-    name: "Buda mega gigante",
-    price: 58000,
+    name: "Producto 1",
+    price: 10,
     quantity: 0,
-    photo: "img/buda1.jpeg",
+    photo: "https://picsum.photos/150?random=1",
   },
   {
     id: 2,
-    name: "Buda de la paz",
-    price: 20000,
+    name: "Producto 2",
+    price: 15,
     quantity: 0,
-    photo: "img/buda2.jpeg",
+    photo: "https://picsum.photos/150?random=2",
   },
   {
     id: 3,
-    name: "Buda flores",
-    price: 40000,
+    name: "Producto 3",
+    price: 20,
     quantity: 0,
-    photo: "img/buda3.jpeg",
+    photo: "https://picsum.photos/150?random=3",
   },
   {
     id: 4,
-    name: "Diosa Shiva",
-    price: 58200,
+    name: "Producto 4",
+    price: 25,
     quantity: 0,
-    photo: "img/buda4.jpeg",
+    photo: "https://picsum.photos/150?random=4",
   },
   {
     id: 5,
-    name: "Buda meditando",
-    price: 30000,
+    name: "Producto 5",
+    price: 30,
     quantity: 0,
-    photo: "img/buda5.jpeg",
+    photo: "https://picsum.photos/150?random=5",
   },
   {
     id: 6,
-    name: "Buda soñador",
-    price: 30000,
+    name: "Producto 6",
+    price: 12,
     quantity: 0,
-    photo: "img/buda6.jpeg",
+    photo: "https://picsum.photos/150?random=6",
   },
   {
     id: 7,
-    name: "Buda soñador chico",
-    price: 19000,
+    name: "Producto 7",
+    price: 18,
     quantity: 0,
-    photo: "img/buda7.jpeg",
+    photo: "https://picsum.photos/150?random=7",
   },
   {
     id: 8,
-    name: "Buda gigante",
-    price: 100000,
+    name: "Producto 8",
+    price: 22,
     quantity: 0,
-    photo: "img/buda8.jpeg",
+    photo: "https://picsum.photos/150?random=8",
   },
-];
+  {
+    id: 9,
+    name: "Producto 9",
+    price: 27,
+    quantity: 0,
+    photo: "https://picsum.photos/150?random=9",
+  },
+  {
+    id: 10,
+    name: "Producto 10",
+    price: 35,
+    quantity: 0,
+    photo: "https://picsum.photos/150?random=10",
+  },
+]; */
 
-if (localStorage.getItem("cart") === null) {
-  localStorage.setItem("cart", JSON.stringify(data));
+let dataResult = [];
+
+async function cargarDatos() {
+  try {
+    const response = await fetch("http://localhost:8080/data.json");
+    if (!response.ok) throw new Error("Error en la respuesta");
+    dataResult = await response.json();
+    return dataResult;
+  } catch (error) {
+    console.error("Error al cargar los datos:", error);
+  }
 }
 
-data = localStorage.getItem("cart");
-data = JSON.parse(data);
+async function renderProducts() {
+  let data = await cargarDatos();
 
-let container = document.querySelector(".container");
-container.innerHTML = "";
+  if (localStorage.getItem("cart") === null) {
+    localStorage.setItem("cart", JSON.stringify(data));
+  }
 
-data.forEach((element) => {
-  container.innerHTML += `
-    <div class="product">
-        <img src="${element.photo}" alt="Producto ${element.id}">
-        <div class="product-info">
-            <p>${element.name}</p>
-            <p>Precio: $${element.price}</p>
-        </div>
-        <div class="controlador-cantidades">
-            <button onclick="decreaseQuantity(this)" id="${element.id}">-</button>
-            <span>${element.quantity}</span>
-            <button onclick="increaseQuantity(this)" id="${element.id}">+</button>
-        </div>
-    </div>`;
-});
+  data = localStorage.getItem("cart");
+  data = JSON.parse(data);
+
+  let container = document.querySelector(".container");
+  container.innerHTML = "";
+
+  data.forEach((element) => {
+    container.innerHTML += `
+      <div class="product">
+          <img src="${element.photo}" alt="Producto ${element.id}">
+          <div class="product-info">
+              <p>${element.name}</p>
+              <p>Precio: $${element.price}</p>
+          </div>
+          <div class="controlador-cantidades">
+              <button onclick="decreaseQuantity(this)" id="${element.id}">-</button>
+              <span>${element.quantity}</span>
+              <button onclick="increaseQuantity(this)" id="${element.id}">+</button>
+          </div>
+      </div>`;
+  });
+}
+
+renderProducts();
 
 function increaseQuantity(button) {
   let container = button.parentElement;
@@ -104,7 +137,6 @@ function increaseQuantity(button) {
     productoModificar.quantity++;
   }
 
-  console.log(data);
   localStorage.setItem("cart", JSON.stringify(data));
   span.textContent = newQuantity;
   totalize();
@@ -127,7 +159,6 @@ function decreaseQuantity(button) {
     if (productoModificar) {
       productoModificar.quantity--;
     }
-    console.log(data);
     localStorage.setItem("cart", JSON.stringify(data));
     span.textContent = newQuantity;
   }
@@ -171,8 +202,14 @@ function closeModal() {
 }
 
 function confirmPurchase() {
-  alert("Compra realizada con éxito!");
-  localStorage.removeItem("cart");
-  closeModal();
-  location.reload();
+  Swal.fire({
+    title: "¡Éxito!",
+    text: "Los productos se cargaron correctamente.",
+    icon: "success",
+    confirmButtonText: "Aceptar",
+  }).then(() => {
+    localStorage.removeItem("cart");
+    closeModal();
+    location.reload();
+  });
 }

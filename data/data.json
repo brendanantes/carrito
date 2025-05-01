@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Buda mega gigante",
+    "price": 58000,
+    "quantity": 0,
+    "photo": "img/buda1.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Buda de la paz",
+    "price": 20000,
+    "quantity": 0,
+    "photo": "img/buda2.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Buda flores",
+    "price": 40000,
+    "quantity": 0,
+    "photo": "img/buda3.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "Diosa Shiva",
+    "price": 58200,
+    "quantity": 0,
+    "photo": "img/buda4.jpeg"
+  },
+  {
+    "id": 5,
+    "name": "Buda meditando",
+    "price": 30000,
+    "quantity": 0,
+    "photo": "img/buda5.jpeg"
+  },
+  {
+    "id": 6,
+    "name": "Buda soñador",
+    "price": 30000,
+    "quantity": 0,
+    "photo": "img/buda6.jpeg"
+  },
+  {
+    "id": 7,
+    "name": "Buda soñador chico",
+    "price": 19000,
+    "quantity": 0,
+    "photo": "img/buda7.jpeg"
+  },
+  {
+    "id": 8,
+    "name": "Buda gigante",
+    "price": 100000,
+    "quantity": 0,
+    "photo": "img/buda8.jpeg"
+  }
+]
